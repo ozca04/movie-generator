@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <div class="fixed-grid">
+      <div class="grid">
+        <h1 class="title is-1 m-auto">Watch List</h1>
+        <form class="m-auto" id="form">
+          <div class="field has-addons">
+            <div class="control">
+              <input
+                class="input"
+                id="movieSearchBar"
+                placeholder="Title"
+                type="text"
+                name="query"
+              />
+            </div>
+            <div class="control">
+              <button class="button is-info" id="movieSeachButton">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="wish-list-container">
+      <h2 class="m-5">Like to watch these</h2>
+      <div class="grid" id="favorites-section"></div>
+    </div>
+
+    <div class="fixed-grid has-4-cols">
+      <div class="grid" id="movieContainer"></div>
+    </div>
+
+    <!-- Links -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
