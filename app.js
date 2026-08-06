@@ -22,7 +22,8 @@ form.addEventListener("submit", async function (e) {
 });
 
 const makeImages = function Generator(shows) {
-  for (let i = 0; i < shows.length; i++) {
+  for (let i = 0; i < 8; i++) {
+    movieContainer.innerHTML = "";
     const showImg = shows[i].show.image;
     const showName = shows[i].show.name;
     if (showImg && showName) {
@@ -44,6 +45,7 @@ const makeImages = function Generator(shows) {
         if (!movieList.includes(shows[i])) {
           movieList.push(shows[i]);
         }
+        localStorage.setItem("movieStorage", JSON.stringify(movieList)); // ← add here
         movies2Watch(movieList);
       });
 
@@ -60,7 +62,7 @@ const movies2Watch = function movieSelector(movies) {
     const showName = movies[i].show.name;
     if (showImg && showName) {
       const card = document.createElement("div");
-      card.className = "cell";
+      card.className = "cell  m-4";
 
       const img = document.createElement("img");
       img.src = showImg.medium;
@@ -71,6 +73,7 @@ const movies2Watch = function movieSelector(movies) {
       const btnRMV = document.createElement("button");
       btnRMV.addEventListener("click", function (e) {
         movieList.splice(i, 1);
+        localStorage.setItem("movieStorage", JSON.stringify(movieList));
         movies2Watch(movieList);
       });
       btnRMV.className = "button is-white";
@@ -81,3 +84,10 @@ const movies2Watch = function movieSelector(movies) {
     }
   }
 };
+
+const saveTheStorage = localStorage.getItem("movieStorage");
+if (saveTheStorage) {
+  const parsed = JSON.parse(saveTheStorage);
+  movieList.push(...parsed); //deconstructs array
+  movies2Watch(movieList);
+}
